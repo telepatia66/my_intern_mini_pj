@@ -1,0 +1,51 @@
+:root {
+    --font-sans: "IBM Plex Sans Thai Looped", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+
+    /* Brand */
+    --indigo: #6d3df2;
+    --indigo-soft: #f1edff;
+    --indigo-dark: #4f2fd7;
+    --indigo-gradient: linear-gradient(135deg, #7b4bff, #5a2fe0);
+
+    /* Status */
+    --teal: #14b8a6;
+    --teal-soft: #e2f7f4;
+    --green: #22c55e;
+    --green-soft: #e7f8ee;
+    --amber: #f59e0b;
+    --amber-soft: #fef3e2;
+    --red: #ef4444;
+    --red-soft: #fdecec;
+    --blue: #3b82f6;
+    --blue-soft: #e9f1fe;
+    --blue-text: #1d4ed8;
+    --blue-border: #dbe6fb;
+    --weekend: #e2495f;
+
+    /* Accent text/border shades */
+    --red-text: #b91c1c;
+    --red-border: #f7caca;
+    --green-text: #15803d;
+    --green-border: #bce9cd;
+    --amber-text: #b45309;
+    --amber-border: #f7e0b8;
+    --teal-text: #0f766e;
+
+    /* Neutrals / surfaces */
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --border: #e8ecf4;
+    --text: #1f2a44;
+    --muted: #7b879c;
+
+    /* Dark sidebar surface (admin shell) */
+    --surface-dark: #171a35;
+    --text-on-dark: #cfd3e6;
+    --indigo-on-dark: #a48bff;
+
+    /* Dark modal/drawer scrim */
+    --scrim: rgba(15, 18, 40, 0.45);
+
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+    --radius: 16px;
+}
