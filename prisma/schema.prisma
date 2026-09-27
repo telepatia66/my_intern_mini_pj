@@ -10,8 +10,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -20,6 +20,60 @@ model User {
   email        String   @unique
   passwordHash String
   name         String
-  role         String   // "admin" หรือ "intern"
+  role         String
   createdAt    DateTime @default(now())
+
+  attendances   Attendance[]
+  leaveRequests LeaveRequest[]
+  onboarding    Onboarding?
+}
+
+model Attendance {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  date      DateTime  @db.Date
+  checkIn   DateTime?
+  checkOut  DateTime?
+  createdAt DateTime  @default(now())
+
+  @@unique([userId, date])
+}
+
+model LeaveRequest {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  type      String
+  reason    String
+  status    String   @default("pending")
+  adminNote String?
+  createdAt DateTime @default(now())
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  dueDate     DateTime
+  assignedTo  String?
+  createdBy   String
+  status      String   @default("open")
+  createdAt   DateTime @default(now())
+}
+
+model Onboarding {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  data        Json
+  submittedAt DateTime @default(now())
+}
+
+model Holiday {
+  id   String   @id @default(cuid())
+  date DateTime @db.Date @unique
+  name String
 }

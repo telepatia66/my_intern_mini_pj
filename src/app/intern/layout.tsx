@@ -2,9 +2,9 @@ import AppShell, { NavItem } from "@frontend/AppShell";
 
 const internNavItems: NavItem[] = [
     { label: "หน้าแรก", href: "/intern" },
-    { label: "เช็คอิน-เอาท์", href: "/intern/attendance" },
     { label: "แจ้งลา", href: "/intern/leave" },
-    { label: "งานที่ได้รับมอบหมาย", href: "/intern/tasks" },
+    { label: "งานที่ได้รับมอบหมาย", href: "/intern/calendar" },
+    { label: "Onboarding", href: "/intern/onboarding" },
 ];
 
 export default function InternLayout({

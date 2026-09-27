@@ -4,7 +4,9 @@ const adminNavItems: NavItem[] = [
     { label: "แดชบอร์ด", href: "/admin" },
     { label: "จัดการนักศึกษาฝึกงาน", href: "/admin/interns" },
     { label: "อนุมัติการลา", href: "/admin/leave-requests" },
-    { label: "มอบหมายงาน", href: "/admin/tasks" },
+    { label: "มอบหมายงาน", href: "/admin/calendar" },
+    { label: "Onboarding", href: "/admin/onboarding" },
+    { label: "จัดการวันหยุด", href: "/admin/holidays" },
     { label: "รายงานสรุป", href: "/admin/reports" },
 ];
 
