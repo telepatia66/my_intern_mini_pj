@@ -1,5 +1,5 @@
 "use client";
-
+import AttendanceLog from "@frontend/AttendanceLog";
 import { useEffect, useState } from "react";
 
 interface Attendance {
@@ -89,6 +89,7 @@ export default function InternHomePage() {
                     </li>
                 ))}
             </ul>
+            <AttendanceLog />
         </div>
     );
 }

@@ -31,7 +31,7 @@ model User {
 model Attendance {
   id        String    @id @default(cuid())
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   date      DateTime  @db.Date
   checkIn   DateTime?
   checkOut  DateTime?
@@ -40,10 +40,11 @@ model Attendance {
   @@unique([userId, date])
 }
 
+
 model LeaveRequest {
   id        String   @id @default(cuid())
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   startDate DateTime @db.Date
   endDate   DateTime @db.Date
   type      String
@@ -67,7 +68,7 @@ model Task {
 model Onboarding {
   id          String   @id @default(cuid())
   userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   data        Json
   submittedAt DateTime @default(now())
 }

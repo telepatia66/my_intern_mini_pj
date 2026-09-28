@@ -33,14 +33,18 @@ export async function POST(request: NextRequest) {
         );
     }
 
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (end < start) {
+        return NextResponse.json(
+            { error: "วันที่สิ้นสุดต้องไม่ก่อนวันที่เริ่มลา" },
+            { status: 400 }
+        );
+    }
+
     const leaveRequest = await prisma.leaveRequest.create({
-        data: {
-            userId: user.userId,
-            startDate: new Date(startDate),
-            endDate: new Date(endDate),
-            type,
-            reason,
-        },
+        data: { userId: user.userId, startDate: start, endDate: end, type, reason },
     });
 
     return NextResponse.json({ leaveRequest });

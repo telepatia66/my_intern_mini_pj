@@ -73,7 +73,7 @@ export default function InternLeavePage() {
                 </label>
                 <label>
                     วันที่สิ้นสุด
-                    <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+                    <input type="date" value={endDate} min={startDate} onChange={(e) => setEndDate(e.target.value)} required />
                 </label>
                 <label>
                     ประเภทการลา
