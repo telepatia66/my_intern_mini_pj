@@ -48,4 +48,45 @@
 
     --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
     --radius: 16px;
+    /* ===== Theme extension: light (default/intern) + dark (admin) ===== */
+    --page-bg: linear-gradient(180deg, #ffffff 0%, #eee8ff 55%, #e3dcff 100%);
+    --hero-card-bg: #ffffff;
+    --hero-card-border: var(--border);
+    --hero-shadow: 0 24px 60px -24px rgba(109, 61, 242, 0.28), var(--shadow);
+    --pill-bg: var(--green-soft);
+    --pill-text: var(--green-text);
+    --pill-border: var(--green-border);
+    --quote-color: #9891b8;
+    --clock-ring: rgba(109, 61, 242, 0.16);
+    --clock-face: #ffffff;
+    --badge-shadow: 0 10px 24px -8px rgba(109, 61, 242, 0.55);
+    --topbar-icon-bg: #ffffff;
+    --logout-bg: var(--indigo-soft);
+    --logout-text: var(--indigo-dark);
+    --logout-border: #e3d9ff;
+
+}
+
+[data-theme="dark"] {
+    --bg: #0a0a12;
+    --card: #14141f;
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #e7e6f2;
+    --muted: #918fb0;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.45);
+
+    --page-bg: radial-gradient(circle at 85% 0%, #241c42 0%, #0a0a12 55%);
+    --hero-card-bg: rgba(255, 255, 255, 0.035);
+    --hero-card-border: rgba(255, 255, 255, 0.09);
+    --hero-shadow: 0 24px 70px -24px rgba(124, 58, 237, 0.45);
+    --pill-bg: rgba(34, 197, 94, 0.15);
+    --pill-text: #4ade80;
+    --pill-border: rgba(74, 222, 128, 0.25);
+    --quote-color: #6f6c8f;
+    --clock-ring: rgba(124, 58, 237, 0.3);
+    --clock-face: rgba(255, 255, 255, 0.03);
+    --topbar-icon-bg: rgba(255, 255, 255, 0.04);
+    --logout-bg: rgba(124, 58, 237, 0.12);
+    --logout-text: #b9a4ff;
+    --logout-border: rgba(124, 58, 237, 0.35);
 }

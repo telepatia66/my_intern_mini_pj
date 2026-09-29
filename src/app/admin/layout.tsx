@@ -1,13 +1,15 @@
 import AppShell, { NavItem } from "@frontend/AppShell";
+import { HomeIcon, UsersIcon, ChartIcon, DocIcon, CalendarStarIcon } from "@frontend/icons";
 
 const adminNavItems: NavItem[] = [
-    { label: "แดชบอร์ด", href: "/admin" },
-    { label: "จัดการนักศึกษาฝึกงาน", href: "/admin/interns" },
-    { label: "อนุมัติการลา", href: "/admin/leave-requests" },
-    { label: "มอบหมายงาน", href: "/admin/calendar" },
-    { label: "Onboarding", href: "/admin/onboarding" },
-    { label: "จัดการวันหยุด", href: "/admin/holidays" },
-    { label: "รายงานสรุป", href: "/admin/reports" },
+    { label: "แดชบอร์ด", href: "/admin", icon: <HomeIcon /> },
+    { label: "จัดการนักศึกษาฝึกงาน", href: "/admin/interns", icon: <UsersIcon /> },
+    { label: "อนุมัติการลา", href: "/admin/leave-requests", icon: <ChartIcon /> },
+    { label: "มอบหมายงาน", href: "/admin/calendar", icon: <DocIcon /> },
+    { label: "Onboarding", href: "/admin/onboarding", icon: <CalendarStarIcon /> },
+    { label: "จัดการวันหยุด", href: "/admin/holidays", icon: <CalendarStarIcon /> },
+    { label: "รายงานสรุป", href: "/admin/reports", icon: <ChartIcon /> },
+    { label: "คำขอสมัครสมาชิก", href: "/admin/registrations", icon: <UsersIcon /> },
 ];
 
 export default function AdminLayout({

@@ -1,10 +1,11 @@
 import AppShell, { NavItem } from "@frontend/AppShell";
+import { HomeIcon, ChartIcon, DocIcon, CalendarStarIcon } from "@frontend/icons";
 
 const internNavItems: NavItem[] = [
-    { label: "หน้าแรก", href: "/intern" },
-    { label: "แจ้งลา", href: "/intern/leave" },
-    { label: "งานที่ได้รับมอบหมาย", href: "/intern/calendar" },
-    { label: "Onboarding", href: "/intern/onboarding" },
+    { label: "หน้าแรก", href: "/intern", icon: <HomeIcon /> },
+    { label: "แจ้งลา", href: "/intern/leave", icon: <ChartIcon /> },
+    { label: "งานที่ได้รับมอบหมาย", href: "/intern/calendar", icon: <DocIcon /> },
+    { label: "Onboarding", href: "/intern/onboarding", icon: <CalendarStarIcon /> },
 ];
 
 export default function InternLayout({

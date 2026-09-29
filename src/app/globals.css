@@ -27,3 +27,228 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+
+.app-main {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.app-main h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 20px;
+}
+
+.app-main h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 28px 0 14px;
+}
+
+.app-main p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Forms as cards */
+.app-main form {
+  background: var(--hero-card-bg);
+  border: 1px solid var(--hero-card-border);
+  border-radius: 20px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 520px;
+  margin-bottom: 12px;
+}
+
+.app-main label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.app-main input,
+.app-main select,
+.app-main textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.app-main form button {
+  align-self: flex-start;
+  background: var(--indigo-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--badge-shadow);
+}
+
+/* Table as cards */
+.app-main table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--hero-card-bg);
+  border: 1px solid var(--hero-card-border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.app-main thead {
+  background: var(--border);
+}
+
+.app-main th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-main td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-main tr:last-child td {
+  border-bottom: none;
+}
+
+/* Buttons inside tables (delete/approve/reject) — smaller, softer */
+.app-main td button {
+  background: var(--red-soft);
+  color: var(--red-text);
+  border: 1px solid var(--red-border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none;
+  margin-right: 6px;
+}
+
+/* Plain lists (e.g. intern calendar tasks) as cards */
+.app-main ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-main li {
+  background-color: var(--hero-card-bg);
+  border: 1px solid var(--hero-card-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.app-main li button {
+  margin-top: 8px;
+  background: var(--indigo-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Auth pages (login/register) */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--page-bg, var(--bg));
+  padding: 24px;
+}
+
+.auth-card {
+  background: var(--hero-card-bg, var(--card));
+  border: 1px solid var(--hero-card-border, var(--border));
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-card h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.auth-card input {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.auth-card button[type="submit"] {
+  background: var(--indigo-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--badge-shadow);
+}
+
+.auth-link {
+  color: var(--indigo);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.auth-link:hover {
+  color: var(--indigo-dark);
+  text-decoration: underline;
+}

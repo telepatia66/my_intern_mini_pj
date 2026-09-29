@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -133,6 +134,10 @@ export default function LoginPage() {
                 >
                     {loading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ"}
                 </button>
+                <p style={{ textAlign: "center", marginTop: "12px" }}>
+                    ยังไม่มีบัญชี?{" "}
+                    <Link href="/register" className="auth-link">สมัครสมาชิก</Link>
+                </p>
             </form>
         </div>
     );

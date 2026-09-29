@@ -43,12 +43,12 @@ export default function AttendanceLog() {
                 style={{
                     maxHeight: "360px",
                     overflowY: "auto",
-                    border: "1px solid var(--border)",
-                    borderRadius: "10px",
+                    borderRadius: "16px",
+                    boxShadow: "var(--shadow)",
                 }}
             >
                 <table style={{ width: "100%" }}>
-                    <thead style={{ position: "sticky", top: 0, background: "var(--card)" }}>
+                    <thead style={{ position: "sticky", top: 0, background: "var(--border)" }}>
                         <tr>
                             <th>ชื่อ</th>
                             <th>วันที่</th>
@@ -58,10 +58,10 @@ export default function AttendanceLog() {
                     </thead>
                     <tbody>
                         {loading && (
-                            <tr><td colSpan={4}>กำลังโหลด...</td></tr>
+                            <tr><td colSpan={4} style={{ color: "var(--muted)" }}>กำลังโหลด...</td></tr>
                         )}
                         {!loading && logs.length === 0 && (
-                            <tr><td colSpan={4}>ยังไม่มีข้อมูล</td></tr>
+                            <tr><td colSpan={4} style={{ color: "var(--muted)" }}>ยังไม่มีข้อมูล</td></tr>
                         )}
                         {logs.map((l) => (
                             <tr key={l.id}>
@@ -69,7 +69,9 @@ export default function AttendanceLog() {
                                 <td>{new Date(l.date).toLocaleDateString("th-TH")}</td>
                                 <td>
                                     {fmtTime(l.checkIn)}
-                                    {isLate(l.checkIn) && <span style={{ color: "red" }}> (สาย)</span>}
+                                    {isLate(l.checkIn) && (
+                                        <span style={{ color: "var(--red-text)", fontWeight: 600 }}> (สาย)</span>
+                                    )}
                                 </td>
                                 <td>{fmtTime(l.checkOut)}</td>
                             </tr>

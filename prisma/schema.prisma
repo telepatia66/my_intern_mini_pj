@@ -40,7 +40,6 @@ model Attendance {
   @@unique([userId, date])
 }
 
-
 model LeaveRequest {
   id        String   @id @default(cuid())
   userId    String
@@ -77,4 +76,13 @@ model Holiday {
   id   String   @id @default(cuid())
   date DateTime @db.Date @unique
   name String
+}
+
+model RegistrationRequest {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  status       String   @default("pending") // pending / approved / rejected
+  createdAt    DateTime @default(now())
 }
