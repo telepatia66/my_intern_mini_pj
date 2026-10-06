@@ -2,7 +2,8 @@
 
 ระบบลงเวลาเข้า-ออกงานสำหรับนักศึกษาฝึกงาน แยกบทบาทผู้ใช้เป็น 2 แบบ
 คือ **admin** และ **intern** ครอบคลุมการเช็คอิน-เอาท์, แจ้งลา,
-ปฏิทิน/มอบหมายงาน, บันทึก onboarding วันแรก และรายงานสรุปรายเดือน
+ปฏิทิน/มอบหมายงาน, บันทึก onboarding วันแรก, รายงานสรุปรายเดือน
+และระบบสมัครสมาชิกที่ต้องรอ admin อนุมัติก่อนถึงจะเข้าใช้งานได้
 
 > ⚠️ โปรเจกต์นี้ยังอยู่ระหว่างการพัฒนา (work in progress) ดูสถานะ
 > ล่าสุดได้ที่หัวข้อ [สถานะโปรเจกต์](#-สถานะโปรเจกต์) ด้านล่าง
@@ -84,7 +85,8 @@ npx prisma db seed
 npm run dev
 ```
 
-เปิดเบราว์เซอร์ไปที่ [http://localhost:3000/login](http://localhost:3000/login)
+เปิดเบราว์เซอร์ไปที่ [http://localhost:3000](http://localhost:3000)
+— ระบบจะเด้งไปหน้า `/login` โดยอัตโนมัติถ้ายังไม่ได้เข้าสู่ระบบ
 
 ---
 
@@ -98,24 +100,72 @@ attendance-app/
     seed.ts                 # สร้าง user ทดสอบ
   src/
     app/
-      admin/                 # หน้าฝั่ง admin
-      intern/                # หน้าฝั่ง intern
+      admin/                 # หน้าฝั่ง admin (ธีมมืด)
+        interns/               # จัดการนักศึกษาฝึกงาน
+        leave-requests/        # อนุมัติการลา
+        calendar/               # มอบหมายงาน
+        onboarding/             # ดูสถานะ onboarding
+        holidays/               # จัดการวันหยุดนักขัตฤกษ์
+        reports/                # รายงานสรุปรายเดือน (+ export CSV/PDF)
+        registrations/          # อนุมัติคำขอสมัครสมาชิก
+      intern/                # หน้าฝั่ง intern (ธีมสว่าง)
+        leave/                  # แจ้งลา
+        calendar/               # งานที่ได้รับมอบหมาย
+        onboarding/             # กรอกข้อมูลวันแรก
       login/                 # หน้า login
+      register/              # หน้าสมัครสมาชิก (รอ admin อนุมัติ)
       api/
-        auth/                 # API login/logout
-      layout.tsx              # root layout
+        auth/                   # login, logout, register
+        admin/                  # API เฉพาะ admin ทั้งหมด
+        attendance/             # check-in, check-out, status, log
+        leave/                  # แจ้งลา (ฝั่ง intern)
+        tasks/                  # งานที่ได้รับมอบหมาย (ฝั่ง intern)
+        onboarding/             # onboarding (ฝั่ง intern)
+      layout.tsx              # root layout (โหลดฟอนต์)
+      page.tsx                 # หน้าแรก — redirect ตาม role/สถานะ login
     backend/
-      auth/                   # hash password, JWT, session
+      auth/                   # hash password, JWT, session (getCurrentUser)
     frontend/
-      AppShell.tsx             # sidebar + topbar ใช้ร่วมกัน
+      AppShell.tsx             # sidebar + topbar ใช้ร่วมกัน (สลับธีมตาม role)
+      AnalogClock.tsx           # นาฬิกาเข็มแบบ real-time
+      AttendanceLog.tsx         # ตาราง log การเข้า-ออกงาน (ใช้ทั้ง 2 ฝั่ง)
+      icons.tsx                 # ไอคอน SVG กลาง
       styles/
-        tokens.css              # design tokens
+        tokens.css               # design tokens (สี, ฟอนต์, เงา, radius,
+                                    ตัวแปรธีม light/dark)
     generated/
       prisma/                 # auto-generated โดย prisma generate
                                 (ห้ามแก้ไขเอง)
     proxy.ts                  # ตรวจสอบสิทธิ์เข้าถึงหน้า (คือ
                                 middleware ของ Next.js 16)
 ```
+
+---
+
+## 🎨 ระบบ Theme
+
+หน้า **admin** ใช้ธีมมืด (dark navy + gradient ม่วง) และหน้า
+**intern** ใช้ธีมสว่าง (ขาว-ลาเวนเดอร์อ่อน) โดย sidebar เป็นสีมืด
+เหมือนกันทั้งสองฝั่งเพื่อรักษา brand identity ควบคุมผ่าน
+`data-theme="dark"/"light"` ที่ `AppShell.tsx` เซ็ตอัตโนมัติตาม
+`userRole` และตัวแปร CSS ใน `tokens.css`
+
+ทุกหน้าใน `src/app/admin/*` และ `src/app/intern/*` ได้ style กลาง
+จาก class `.app-main` (นิยามไว้ใน `globals.css`) โดยอัตโนมัติ
+ครอบคลุม heading, form, table, list ไม่ต้องเขียน style เพิ่มเองใน
+แต่ละหน้า เว้นแต่ต้องการ layout พิเศษเฉพาะหน้า
+
+**เปลี่ยนฟอนต์:** แก้ 2 จุด — ลิงก์ Google Fonts ใน
+`src/app/layout.tsx` และตัวแปร `--font-sans` ใน
+`src/frontend/styles/tokens.css` (ต้องตรงชื่อกัน)
+
+---
+
+## 🔐 ระบบสมัครสมาชิก
+
+ผู้ใช้ใหม่กรอกฟอร์มที่ `/register` → บันทึกเป็นคำขอรอตรวจสอบ (ยัง
+login ไม่ได้) → admin เข้า `/admin/registrations` กดอนุมัติ/ปฏิเสธ
+→ อนุมัติแล้วระบบจะสร้างบัญชี intern จริงให้อัตโนมัติ
 
 ---
 
@@ -142,6 +192,13 @@ npx prisma db seed         # รัน seed script ใหม่
   (`npm install @prisma/client@6.19.3`)
 - `prisma.config.ts` ต้องมีทั้ง `url` และ `directUrl` ใน
   `datasource` block เสมอ ไม่งั้น migration จะล้มเหลว
+- Path alias ของ backend/frontend คือ `@backend/...` และ
+  `@frontend/...` (ไม่ใช่ `@/backend/...`)
+- `page.tsx` กับ `route.ts` ห้ามอยู่โฟลเดอร์เดียวกันสำหรับ path
+  เดียวกัน
+- ทุกครั้งที่สร้างหน้าใหม่ ต้องอัปเดต `navItems` ใน
+  `src/app/admin/layout.tsx` และ/หรือ `src/app/intern/layout.tsx`
+  ด้วย และเช็ค `href` ให้ตรงกับ path ไฟล์จริงเป๊ะๆ
 - Tailwind CSS ถูกถอดออกจากโปรเจกต์แล้วโดยตั้งใจ — ใช้ CSS
   variables จาก `tokens.css` แทน
 
@@ -149,17 +206,19 @@ npx prisma db seed         # รัน seed script ใหม่
 
 ## 📊 สถานะโปรเจกต์
 
-อัปเดตล่าสุด: 26 กันยายน 2569
+อัปเดตล่าสุด: 29 กันยายน 2569
 
 | ขั้นตอน | สถานะ |
 |---------|--------|
 | Setup โปรเจกต์ + โครงสร้างโฟลเดอร์ | ✅ เสร็จ |
 | เชื่อมต่อฐานข้อมูล (Prisma + Supabase) | ✅ เสร็จ |
 | ระบบ Authentication (login/logout) | ✅ เสร็จ ทดสอบผ่านแล้ว |
-| Design Token / Styling | ✅ เสร็จ |
+| Design Token / Styling + ระบบ Theme แยก role | ✅ เสร็จ |
 | โครงหน้าเว็บหลัก (AppShell) | ✅ เสร็จ ทดสอบผ่านแล้ว |
 | Seed script | ✅ เสร็จ |
-| **Business Logic หลัก** (เช็คอิน-เอาท์, แจ้งลา, ปฏิทิน, onboarding, รายงาน) | ⏳ กำลังพัฒนา |
+| **Business Logic หลัก** (เช็คอิน-เอาท์, จัดการ intern, แจ้งลา, ปฏิทิน, onboarding, รายงาน, วันหยุดนักขัตฤกษ์) | ✅ เสร็จ ครบทุกฟีเจอร์ |
+| ทดสอบระบบครบทุกฟีเจอร์ | ✅ เสร็จ |
+| **ระบบสมัครสมาชิกแบบรออนุมัติ** | ✅ เขียนโค้ดเสร็จ ⏳ รอทดสอบจริง |
 | ส่งอีเมลแจ้งเตือน | ❌ ยังไม่เริ่ม |
 | Deploy ขึ้น Vercel | ❌ ยังไม่เริ่ม |
 | ตั้งค่า Cron Job | ❌ ยังไม่เริ่ม |

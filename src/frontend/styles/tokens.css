@@ -1,6 +1,6 @@
 :root {
-    --font-sans: "IBM Plex Sans Thai Looped", system-ui, -apple-system, "Helvetica Neue", sans-serif;
-
+    /* --font-sans: "IBM Plex Sans Thai Looped", system-ui, -apple-system, "Helvetica Neue", sans-serif; */
+    --font-sans: "Montserrat ", system-ui, -apple-system, "Helvetica Neue", sans-serif;
     /* Brand */
     --indigo: #6d3df2;
     --indigo-soft: #f1edff;
