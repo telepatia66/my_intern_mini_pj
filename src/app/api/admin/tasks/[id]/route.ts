@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { getCurrentUser } from "@backend/auth/session";
 
 const prisma = new PrismaClient();

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { verifyPassword } from "@backend/auth/password";
 import { signToken } from "@backend/auth/jwt";
 import { setSessionCookie } from "@backend/auth/session";

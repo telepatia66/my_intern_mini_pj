@@ -185,7 +185,7 @@ npx prisma db seed         # รัน seed script ใหม่
 
 - **รันคำสั่งทุกตัวจากโฟลเดอร์ `attendance-app` เท่านั้น** อย่ารัน
   จากโฟลเดอร์แม่ ไม่งั้น `npx` อาจดึงแพ็กเกจเวอร์ชันผิดมาใช้
-- import `PrismaClient` ต้องใช้ path `@/generated/prisma/client`
+- import `PrismaClient` ต้องใช้ path `@prisma/client`
   เท่านั้น (ยกเว้น script ที่รันนอก Next.js bundler เช่น `seed.ts`
   ให้ใช้ relative path แทน)
 - ต้องติดตั้ง `@prisma/client` ให้ตรงเวอร์ชันกับ `prisma` CLI เป๊ะๆ
